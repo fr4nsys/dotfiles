@@ -1,0 +1,21 @@
+
+
+After the first installation, please:
+
+1) install the appropriate headers package(s) for your installed kernel(s): linux-headers for default kernel, linux-lts-headers for LTS kernel...
+
+2) reboot or load vmw_vmci and vmmon kernel modules (modprobe -a vmw_vmci vmmon)
+
+3) Enable the services you need (using .service units to activate them during boot or .path units to activate them when a VM is started) :
+
+    vmware-networks: to have network access inside VMs
+
+    vmware-usbarbitrator: to connect USB devices inside VMs
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+https://bbs.archlinux.org/viewtopic.php?id=273846
+
+https://github.com/mkubecek/vmware-host-modules/blob/master/INSTALL

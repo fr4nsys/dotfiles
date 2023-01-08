@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style-scheme id="geditDark" _name="geditDark" version="1.0">
+<author>Sean Smith</author>
+<_description>Dark Mode based on Classic Gedit theme</_description>
+
+<!-- Global Settings -->
+<style name="text" foreground="#ffffff" background="#101010" />
+<style name="current-line" background="#212121" />
+<style name="line-numbers" foreground="#e2e2e2" background="#101010" />
+<style background="#ffffff" foreground="#ffffff" name="cursor"/>
+
+<!-- Palette -->
+<color name="blue" value="#2da4ff"/>
+<color name="magenta" value="#f524e8"/>
+<color name="violet" value="#686cff"/>
+<color name="cyan" value="#0dd7da"/>
+<color name="green" value="#1ccb56"/>
+<color name="bordeaux" value="#e0371b"/>
+<color name="red" value="#ff2d2d"/>
+<color name="yellow" value="#FFFF00"/>
+<color name="purple" value="#9e37ff"/>
+
+<!-- Special -->
+<style name="def:boolean" foreground="green" bold="true"/>
+<style name="def:special-constant" foreground="green" bold="true"/>
+
+<!-- Bracket Matching -->
+<style name="bracket-match" foreground="#white" background="#grey" bold="true"/>
+<style name="bracket-mismatch" foreground="#white" background="#red" bold="true"/>
+
+<!-- Search Matching -->
+<style name="search-match" foreground="#101010" background="yellow"/>
+
+<!-- Comments -->
+<style name="def:comment" foreground="blue"/>
+<style name="def:shebang" foreground="blue" bold="true"/>
+<style name="def:doc-comment-element" italic="true"/>
+
+<!-- Constants -->
+<style name="def:constant" foreground="magenta"/>
+<style name="def:special-char" foreground="violet"/>
+
+<!-- Identifiers -->
+<style name="def:identifier" foreground="cyan"/>
+
+<!-- Statements -->
+<style name="def:statement" foreground="bordeaux" bold="true"/>
+
+<!-- Types -->
+<style name="def:type" foreground="green" bold="true"/>
+
+<!-- Others -->
+<style name="def:preprocessor" foreground="purple"/>
+<style name="def:error" background="red" bold="true"/>
+<style name="def:note" foreground="blue" background="yellow" bold="true"/>
+<style name="def:underlined" italic="true" underline="true"/>
+
+<!-- Language specific styles -->
+<style name="diff:added-line" foreground="#0cd5d5"/>
+<style name="diff:removed-line" foreground="#806cff"/>
+<style name="diff:changed-line" use-style="def:preprocessor"/>
+<style name="diff:special-case" use-style="def:constant"/>
+<style name="diff:location" use-style="def:statement"/>
+<style name="diff:diff-file" use-style="def:type"/>
+<style name="xml:tags" foreground="cyan"/>
+<style name="xml:attribute-name" foreground="violet"/>
+<style name="xml:namespace" foreground="green" bold="true"/>
+<style name="js:object" foreground="#2add79" bold="true"/>
+<style name="js:constructors" foreground="#17d8d8"/>
+<style name="latex:display-math" foreground="#745dff"/>
+<style name="latex:command" foreground="#15db6d" bold="true"/>
+<style name="latex:include" use-style="def:preprocessor"/>
+<style name="sh:variable" foreground="#6850ff"/>
+
+<!-- legacy styles for old lang files -->
+<style name="Others" foreground="#03df64" bold="true"/>
+<style name="Others 2" foreground="#11dfdf"/>
+<style name="Others 3" foreground="#7a64ff"/>
+</style-scheme>
