@@ -1,13 +1,13 @@
 # dotfiles
  Arch Linux dotfiles
 
+![gnome](img/Screenshot2023-01-08-18-46-24.png)
+
 ***Idioma***
 - 🇪🇸 Español
 - [🇺🇸 English]
 
 ## Instalación (Arch)
-
- **[Xephyr](https://wiki.archlinux.org/index.php/Xephyr)**:
 
 Estos son mis discos duros y particiones en mi caso usare el disco nvme1n1 que ya tiene las particiones hechas porque ya tenia Arch instalado y solo las voy a formatear, aqui dejo una [guia](https://odiseageek.es/posts/instalar-archlinux-con-btrfs-y-encriptacion-luks/) muy buena que detalla todos los pasos.
 
@@ -111,3 +111,5 @@ nano /etc/hosts
 127.0.0.1       HOSTNAME.localhost HOSTNAME
 ```
 ![users](installimg/IMG_20230107_221944_912.jpg)
+
+In progress...
