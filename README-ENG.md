@@ -3,11 +3,11 @@
 
 ![gnome](img/Screenshot2023-01-13.14-11-53.png)
 
-***Idioma***
-- 🇪🇸 Español
-- [🇺🇸 English](https://github.com/fr4nsys/dotfiles/blob/main/README-ENG.md) 
+***Language***
+- 🇺🇸 English
+- [🇪🇸 Español](https://github.com/fr4nsys/dotfiles/)
 
-## Fuentes, temas y GTK
+## Fonts, themes and GTK
 
 | Software                                                                               | Utilidad                               |
 | -------------------------------------------------------------------------------------- | -------------------------------------- |
@@ -34,16 +34,16 @@
 | **[firefox](https://wiki.archlinux.org/title/Firefox)**               | Navegador web                      |
 
 
-## Instalación (Arch)
+## (Arch) Install
 
-Estos son mis discos duros y particiones en mi caso usare el disco nvme1n1 que ya tiene las particiones hechas porque ya tenia Arch instalado y solo las voy a formatear, aqui dejo una [guia](https://odiseageek.es/posts/instalar-archlinux-con-btrfs-y-encriptacion-luks/) muy buena que detalla todos los pasos.
+These are my hard disks and partitions in my case I will use the nvme1n1 disk that already has the partitions made because I already had Arch installed and I am only going to format them, here I leave a very good [guide](https://odiseageek.es/posts/instalar-archlinux-con-btrfs-y-encriptacion-luks/) that details all the steps.
 
 ```bash
 lsblk
 ```
 ![lsblk](installimg/IMG_20230107_195553_521.jpg)
 
-Formateo de las particiones boot, EFI y swap
+Formatting boot, EFI and swap partitions
 
 ```bash
 mkfs.fat -F32 /dev/nvme1n1p1
@@ -53,14 +53,14 @@ swapon
 ```
 ![lsblk](installimg/IMG_20230107_195926_902.jpg)
 
-Formateo particion root (raiz) en la que se va instalar el sistema. En este caso la particion esta encriptada con luks.
+I format root partition where the system is going to be installed. In this case the partition is encrypted with luks.
 
 ```bash
 mkfs.btrfs -L root /dev/mapper/root -f
 ```
 ![lsblk](installimg/IMG_20230107_200216_936.jpg)
 
-Montamos las particiones en las que vamos a instalar Arch en /mnt
+We mount the partitions where we are going to install Arch in /mnt
 
 ```bash
 mount -t btrfs /dev/mapper/root /mnt 
@@ -71,26 +71,26 @@ mount /dev/nvme1n1p1 /mnt/efi
 ```
 ![lsblk](installimg/IMG_20230107_200338_333.jpg)
 
-Preparar las claves GPG de pacman para evitar problemas
+Preparing pacman GPG keys to avoid problems
 ```bash
 pacman-key --init
 pacman-key --populate
 pacman-key --refresh-keys
 ```
 
-Instalamos los paquetes basicos (necesarios) con pacstrap
+Install the basic (required) packages with pacstrap
 
 ```bash
 pacstrap -K /mnt linux linux-firmware networkmanager grub wpa_supplicant base base-devel efibootmgr nano btrfs-progs
 ```
 
-Generamos el archivo fstab para que el sistema identifique las particiones
+Generate the fstab file for the system to identify the partitions
 
 ```bash
 genfstab -U /mnt > /mnt/etc/fstab
 ```
 
-Ahora ya vamos a entrar en el sistema que acabamos de instalar en nuestro disco duro
+Now we are going to enter the system that we have just installed on our hard drive
 
 ```bash
 arch-chroot /mnt
@@ -98,7 +98,7 @@ arch-chroot /mnt
 
 ![chroot](installimg/IMG_20230107_215602_814.jpg)
 
-Establecemos la contrasena de root y creamos nuestro usuario
+Set the root password and create our user
 
 ```bash
 passwd
@@ -108,7 +108,7 @@ usermod -aG wheel fran
 ```
 ![users](installimg/IMG_20230107_220810_466.jpg)
 
-Configuramos el archivo /etc/sudoers
+Configure the /etc/sudoers file
 
 ```bash
 visudo /etc/sudoers
@@ -118,8 +118,7 @@ visudo /etc/sudoers
 ```
 ![wheel](installimg/IMG_20230107_221159_913.jpg)
 
-Generamos el archivo locale-gen, establecemos el hostname y la hora
-
+Generate the locale-gen file, set the hostname and timezone
 ```bash
 #Uncomment or add en_US.UTF-8 and es_ES.UTF-8 on /etc/locale.gen
 locale-gen
@@ -129,7 +128,7 @@ echo HOSTNAME > /etc/hostname
 ```
 ![timezone](installimg/IMG_20230107_221829_711.jpg)
 
-Editamos el archivo hosts
+Edit hosts file
 ```bash
 nano /etc/hosts
 #Add this lines
@@ -139,63 +138,63 @@ nano /etc/hosts
 ```
 ![hosts](installimg/IMG_20230107_221944_912.jpg)
 
-Añadimos la partición root en el arranque para desencriptarla. En mi caso es /dev/nvme1n1p3 pero la añadire con el UUID ya que es unico.
+We add the root partition at boot time to decrypt it. In my case it is /dev/nvme1n1p3 but I will add it with the UUID since it is unique.
 ```bash
-blkid #Para ver el UUID de cada particion
+blkid #To see the UUID of each partition
 nano /etc/default/grub
-#Y añadimos en GRUB_CMDLINE_LINUX="crypdevice=UUID=YOURUUID:root root=/dev/mapper/root"
+#And we add in GRUB_CMDLINE_LINUX="crypdevice=UUID=YOURUUID:root root=/dev/mapper/root"
 ```
 ![decryptroot](installimg/IMG_20230110_211731_936.jpg)
 
-Ahora modificaremos también el script de configuración para la creación del initrd y poder desencriptar la partición en el arranque.
+Now we will also modify the configuration script for the creation of the initrd to decrypt the partition at boot time.
 ```bash
-blkid #Para ver el UUID de cada particion
+blkid #To see the UUID of each partition
 nano /etc/mkinitcpio.conf
-#Buscamos el primer HOOKS sin comentar (sin # delante) y añadimos encrypt y/o las que falten al final para que quede asi:
+#We look for the first HOOKS without comment (without # in front) and add encrypt and/or the missing ones at the end to make it look like this:
 HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck encrypt) 
 ```
-Ahora ejecutamos el script para crear el núcleo de arranque.
+Now we run the script to create the boot kernel.
 ```bash
 mkinitcpio -P
 ```
-Tengo otro disco duro que no monto como home pero tengo encriptado y quiero desencriptarlo en el arranque.
+I have another hard disk that I don't mount as home but I have encrypted and I want to decrypt it at boot time.
 ```bash
 nano /etc/crypttab
-#Añado lo siguiente, yo uso el UUID pero podeis usar la particion con /dev/sdX:
+#I add the following, I use the UUID but you can use the partition with /dev/sdX:
 
 hdd UUID=YOURUUID   none
 ```
 ![hdddecrypt](installimg/IMG_20230110_212142_717.jpg)
 
 
-Instalar y configurar grub
+Installing and configuring grub
 ```bash
-#Estos comandos son para UEFI (deberás cambiar las particiones a las que corresponda en tu equipo)
+#These commands are for UEFI (you will have to change the partitions to the corresponding ones in your computer)
 grub-install --boot-directory=/boot --efi-directory=/efi /dev/nvme1n1p2
 
 grub-mkconfig -o /boot/grub/grub.cfg
 grub-mkconfig -o /efi/EFI/arch/grub.cfg
 
-#Comandos para BIOS
+#Commands for BIOS (Legacy)
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 ![grub](installimg/IMG_20230110_212529_681.jpg)
 
-Habilitamos los servicios NetworkManager y wpa_supplicant para tener internet al iniciar el equipo.
+Enable the NetworkManager and wpa_supplicant services to have internet at startup.
 ```bash
 systemctl enable NetworkManager.service
 systemctl enable wpa_supplicant.service
 ```
 
-Ya tenemos Arch instalado y podriamos reinicar, en este caso voy a instalar xorg y Gnome y habilitarlo para que al reiniciar ya tenga entorno gráfico.
-Tú puedes instalar el entorno gráfico que quieras como KDE, Xfce, Qtile, etc.
+We already have Arch installed and we could reboot, in this case I'm going to install xorg and Gnome and enable it so that when rebooting it already has a graphical environment.
+You can install the graphical environment that you want, like KDE, Xfce, Qtile, etc.
 ```bash
 pacman -S git xorg xorg-server gnome
 systemctl enable gdm.service
 ```
 
-Finalizamos la instalación y reiniciamos el equipo.
+Finish the installation and restart the computer.
 ```bash
 exit
 reboot now
