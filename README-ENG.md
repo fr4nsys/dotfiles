@@ -16,6 +16,7 @@
 - [Recomended software](#recomended-software)
 - [Set zsh as default shell](#set-zsh-as-default-shell)
 - [Install nvidia drivers](#install-nvidia-drivers)
+- [Gnome](#gnome)
 
 ## Fonts, themes and GTK
 
@@ -246,3 +247,13 @@ sudo nano /etc/modprobe.d/blacklist.conf
 sudo mkinitcpio -P
 sudo reboot now
 ```
+
+## Gnome
+
+Gnome extensions that I use:
+
+- [Blur my Shell](https://extensions.gnome.org/extension/3193/blur-my-shell/)
+- [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+- [Dock from Dash](https://extensions.gnome.org/extension/4703/dock-from-dash/)
+- [Show Desktop Button](https://extensions.gnome.org/extension/1194/show-desktop-button/) 
+- [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
