@@ -11,7 +11,7 @@
 
 - [Fonts, themes and GTK](#fonts-themes-and-gtk)
 - [Apps](#apps)
-- [Arch Linux Installation](#(arch)-install)
+- [Arch Linux Installation](#arch-linux-installation)
 - [Installing paru](#install-paru-to-use-aur) 
 - [Recomended software](#recomended-software)
 - [Set zsh as default bash](#set-zsh-as-default-bash)
@@ -44,7 +44,7 @@
 | **[firefox](https://wiki.archlinux.org/title/Firefox)**               | Web browser                        |
 
 
-## (Arch) Install
+## Arch Linux Installation
 
 These are my hard disks and partitions in my case I will use the nvme1n1 disk that already has the partitions made because I already had Arch installed and I am only going to format them, here I leave a very good [guide](https://odiseageek.es/posts/instalar-archlinux-con-btrfs-y-encriptacion-luks/) that details all the steps.
 
