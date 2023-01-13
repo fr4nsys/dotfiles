@@ -7,7 +7,7 @@
 - 🇺🇸 English
 - [🇪🇸 Español](https://github.com/fr4nsys/dotfiles/)
 
-# Índice
+# Table of Contents
 
 - [Fonts, themes and GTK](#fonts-themes-and-gtk)
 - [Apps](#apps)
@@ -15,7 +15,7 @@
 - [Installing paru](#install-paru-to-use-aur) 
 - [Recomended software](#recomended-software)
 - [Set zsh as default bash](#set-zsh-as-default-bash)
-- [Instalal nvidia drivers](#install-nvidia-drivers)
+- [Install nvidia drivers](#install-nvidia-drivers)
 
 ## Fonts, themes and GTK
 
