@@ -14,7 +14,7 @@
 - [Arch Linux Installation](#arch-linux-installation)
 - [Installing paru](#install-paru-to-use-aur) 
 - [Recomended software](#recomended-software)
-- [Set zsh as default bash](#set-zsh-as-default-bash)
+- [Set zsh as default shell](#set-zsh-as-default-shell)
 - [Install nvidia drivers](#install-nvidia-drivers)
 
 ## Fonts, themes and GTK
@@ -227,7 +227,7 @@ sudo pacman -Sy firefox kitty ntfs-3g krita materia-gtk-theme vlc mpv zsh zsh-au
 paru -S qogir-icon-theme qogir-gtk-theme github-desktop sublime-text-4 vmware-workstation wps-office ttf-wps-fonts ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-nerd-fonts-hack-complete-git ttf-meslo-nerd-font-powerlevel10k
 ```
 
-## Set zsh as default bash
+## Set zsh as default shell
 ```bash
 sudo usermod --shell /usr/bin/zsh fran
 sudo usermod --shell /usr/bin/zsh root

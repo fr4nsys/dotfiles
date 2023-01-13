@@ -14,7 +14,7 @@
 - [Instalación de Arch Linux](#instalación-de-arch-linux)
 - [Instalar paru](#instalar-paru-para-usar-aur)
 - [Software recomendado](#software-recomendado)
-- [Establecer zsh como bash predeterminada](#establecer-zsh-como-bash-predeterminada)
+- [Establecer zsh como shell predeterminada](#establecer-zsh-como-shell-predeterminada)
 - [Instalar drivers de nvidia](#instalar-drivers-de-nvidia)
 
 ## Fuentes, temas y GTK
@@ -228,7 +228,7 @@ sudo pacman -Sy firefox kitty ntfs-3g krita materia-gtk-theme vlc mpv zsh zsh-au
 paru -S qogir-icon-theme qogir-gtk-theme github-desktop sublime-text-4 vmware-workstation wps-office ttf-wps-fonts ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-nerd-fonts-hack-complete-git ttf-meslo-nerd-font-powerlevel10k
 ```
 
-## Establecer zsh como bash predeterminada
+## Establecer zsh como shell predeterminada
 ```bash
 sudo usermod --shell /usr/bin/zsh fran
 sudo usermod --shell /usr/bin/zsh root
