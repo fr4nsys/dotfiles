@@ -7,6 +7,16 @@
 - 🇪🇸 Español
 - [🇺🇸 English](https://github.com/fr4nsys/dotfiles/blob/main/README-ENG.md) 
 
+# Índice
+
+- [Fuentes, temas y GTK](#fuentes-temas-y-gtk)
+- [Apps](#apps)
+- [Instalación de Arch Linux](#instalación-(arch))
+- [Instalar paru](#instalar-paru-para-usar-aur)
+- [Software recomendado](#software-recomendado)
+- [Establecer zsh como bash predeterminada](#establecer-zsh-como-bash-predeterminada)
+- [Instalar drivers de nvidia](#instalar-drivers-de-nvidia)
+
 ## Fuentes, temas y GTK
 
 | Software                                                                               | Utilidad                               |
@@ -202,3 +212,38 @@ reboot now
 ```
 ![reboot](installimg/IMG_20230110_213239_681.jpg)
 
+## Instalar [paru](https://github.com/morganamilo/paru) para usar AUR
+```bash
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru-bin.git
+cd paru-bin/
+makepkg -si
+paru
+```
+
+## Software recomendado
+```bash
+sudo pacman -Sy firefox kitty ntfs-3g krita materia-gtk-theme vlc mpv zsh zsh-autosuggestions zsh-syntax-highlighting bat lsd neovim unzip zip unrar shotwell transmission-gtk chromium neofetch gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore
+
+paru -S qogir-icon-theme qogir-gtk-theme github-desktop sublime-text-4 vmware-workstation wps-office ttf-wps-fonts ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-nerd-fonts-hack-complete-git ttf-meslo-nerd-font-powerlevel10k
+```
+
+## Establecer zsh como bash predeterminada
+```bash
+sudo usermod --shell /usr/bin/zsh fran
+sudo usermod --shell /usr/bin/zsh root
+```
+
+## Instalar drivers de nvidia
+```bash
+sudo pacman -S nvidia-dkms lib32-nvidia-utils lib32-opencl-nvidia nvidia-settings nvidia-utils opencl-nvidia egl-wayland
+sudo nano /etc/modprobe.d/blacklist.conf
+    #Add this lines
+    blacklist nouveau
+    blacklist rivafb
+    blacklist nvidiafb
+    blacklist rivatv
+    blacklist nv
+sudo mkinitcpio -P
+sudo reboot now
+```

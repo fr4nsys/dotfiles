@@ -7,31 +7,41 @@
 - 🇺🇸 English
 - [🇪🇸 Español](https://github.com/fr4nsys/dotfiles/)
 
+# Índice
+
+- [Fonts, themes and GTK](#fonts-themes-and-gtk)
+- [Apps](#apps)
+- [Arch Linux Installation](#(arch)-install)
+- [Installing paru](#install-paru-to-use-aur) 
+- [Recomended software](#recomended-software)
+- [Set zsh as default bash](#set-zsh-as-default-bash)
+- [Instalal nvidia drivers](#install-nvidia-drivers)
+
 ## Fonts, themes and GTK
 
-| Software                                                                               | Utilidad                               |
+| Software                                                                               | Utility                                |
 | -------------------------------------------------------------------------------------- | -------------------------------------- |
-| **[Gnome](https://wiki.archlinux.org/title/GNOME)**                                    | Entorno grafico                        |
-| **[Qogir](https://aur.archlinux.org/packages/qogir-icon-theme)**                       | Qogir-dark para iconos                 |
-| **[Qogir](https://github.com/vinceliuice/Qogir-theme)**                                | Qogir-dark Thema GTK                   |
+| **[Gnome](https://wiki.archlinux.org/title/GNOME)**                                    | Graphical Environment                  |
+| **[Qogir](https://aur.archlinux.org/packages/qogir-icon-theme)**                       | Qogir-dark for icons                   |
+| **[Qogir](https://github.com/vinceliuice/Qogir-theme)**                                | Qogir-dark GTK Theme                   |
 
 
 
 ## Apps
 
-| Software                                                              | Utilidad                           |
+| Software                                                              | Utility                            |
 | --------------------------------------------------------------------- | ---------------------------------- |
-| **[kitty](https://wiki.archlinux.org/title/kitty)**                   | Emulador de Terminal               |
+| **[kitty](https://wiki.archlinux.org/title/kitty)**                   | Terminal Emulator                  |
 | **[zsh](https://wiki.archlinux.org/title/Zsh)**                       | Shell                              |
-| **[powerlevel10k](https://github.com/romkatv/powerlevel10k)**         | Tema ZSH                           |
-| **[nautilus](https://wiki.archlinux.org/title/GNOME/Files)**          | Gestor de archivos gráfico         |
-| **[ranger](https://wiki.archlinux.org/index.php/Ranger)**             | Gestor de archivos de terminal     |
-| **[neovim](https://wiki.archlinux.org/title/Neovim)**                 | Editor de texto basado en terminal |
-| **[gedit](https://wiki.archlinux.org/title/GNOME/Gedit)**             | Editor de texto                    |
-| **[shotwell](https://wiki.gnome.org/Apps/Shotwell)**                  | Visor y editor de imagenes         |
-| **[krita](https://krita.org/es/)**                                    | Editor de imagenes                 |
-| **[vlc](https://wiki.archlinux.org/title/VLC_media_player)**          | Reproductor de video               |
-| **[firefox](https://wiki.archlinux.org/title/Firefox)**               | Navegador web                      |
+| **[powerlevel10k](https://github.com/romkatv/powerlevel10k)**         | ZSH Theme                          |
+| **[nautilus](https://wiki.archlinux.org/title/GNOME/Files)**          | Graphical file manager             |
+| **[ranger](https://wiki.archlinux.org/index.php/Ranger)**             | Terminal file manager              |
+| **[neovim](https://wiki.archlinux.org/title/Neovim)**                 | Terminal based text editor         |
+| **[gedit](https://wiki.archlinux.org/title/GNOME/Gedit)**             | Text editor                        |
+| **[shotwell](https://wiki.gnome.org/Apps/Shotwell)**                  | Pictures Viewer & Editor           |
+| **[krita](https://krita.org/es/)**                                    | Picture Editor                     |
+| **[vlc](https://wiki.archlinux.org/title/VLC_media_player)**          | Video player                       |
+| **[firefox](https://wiki.archlinux.org/title/Firefox)**               | Web browser                        |
 
 
 ## (Arch) Install
@@ -201,3 +211,38 @@ reboot now
 ```
 ![reboot](installimg/IMG_20230110_213239_681.jpg)
 
+## Install [paru](https://github.com/morganamilo/paru) to use AUR
+```bash
+sudo pacman -S --needed base-devel
+git clone https://aur.archlinux.org/paru-bin.git
+cd paru-bin/
+makepkg -si
+paru
+```
+
+## Recomended software
+```bash
+sudo pacman -Sy firefox kitty ntfs-3g krita materia-gtk-theme vlc mpv zsh zsh-autosuggestions zsh-syntax-highlighting bat lsd neovim unzip zip unrar shotwell transmission-gtk chromium neofetch gnu-free-fonts noto-fonts ttf-bitstream-vera ttf-croscore
+
+paru -S qogir-icon-theme qogir-gtk-theme github-desktop sublime-text-4 vmware-workstation wps-office ttf-wps-fonts ttf-dejavu ttf-droid ttf-ibm-plex ttf-liberation ttf-nerd-fonts-hack-complete-git ttf-meslo-nerd-font-powerlevel10k
+```
+
+## Set zsh as default bash
+```bash
+sudo usermod --shell /usr/bin/zsh fran
+sudo usermod --shell /usr/bin/zsh root
+```
+
+## Install nvidia drivers
+```bash
+sudo pacman -S nvidia-dkms lib32-nvidia-utils lib32-opencl-nvidia nvidia-settings nvidia-utils opencl-nvidia egl-wayland
+sudo nano /etc/modprobe.d/blacklist.conf
+    #Add this lines
+    blacklist nouveau
+    blacklist rivafb
+    blacklist nvidiafb
+    blacklist rivatv
+    blacklist nv
+sudo mkinitcpio -P
+sudo reboot now
+```
