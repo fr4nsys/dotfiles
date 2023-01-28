@@ -153,7 +153,7 @@ We add the root partition at boot time to decrypt it. In my case it is /dev/nvme
 ```bash
 blkid #To see the UUID of each partition
 nano /etc/default/grub
-#And we add in GRUB_CMDLINE_LINUX="crypdevice=UUID=YOURUUID:root root=/dev/mapper/root"
+#And we add in GRUB_CMDLINE_LINUX="cryptdevice=UUID=YOURUUID:root root=/dev/mapper/root"
 ```
 ![decryptroot](installimg/IMG_20230110_211731_936.jpg)
 
@@ -257,3 +257,6 @@ Gnome extensions that I use:
 - [Dock from Dash](https://extensions.gnome.org/extension/4703/dock-from-dash/)
 - [Show Desktop Button](https://extensions.gnome.org/extension/1194/show-desktop-button/) 
 - [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
+
+
+

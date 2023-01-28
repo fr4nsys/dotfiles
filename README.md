@@ -154,7 +154,7 @@ Añadimos la partición root en el arranque para desencriptarla. En mi caso es /
 ```bash
 blkid #Para ver el UUID de cada particion
 nano /etc/default/grub
-#Y añadimos en GRUB_CMDLINE_LINUX="crypdevice=UUID=YOURUUID:root root=/dev/mapper/root"
+#Y añadimos en GRUB_CMDLINE_LINUX="cryptdevice=UUID=YOURUUID:root root=/dev/mapper/root"
 ```
 ![decryptroot](installimg/IMG_20230110_211731_936.jpg)
 
